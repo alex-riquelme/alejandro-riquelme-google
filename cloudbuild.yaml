@@ -1,6 +1,8 @@
 steps:
-- name: 'ubuntu'
-  args: ['bash', './myscript.bash']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/alejandro-riquelme/ubuntu', '.']
-images: ['gcr.io/alejandro-riquelme/ubuntu']
+  args: ['build', '-f', 'Dockerfile.ubuntu-curl', '-t', 'script-runner', '.']
+- name: 'script-runner'
+  args: ['bash', './curl.bash']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/wave15-ariquelme/custom-script-test2', '.']
+images: ['gcr.io/wave15-ariquelme/custom-script-test2']
